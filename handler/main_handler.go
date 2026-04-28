@@ -13,5 +13,6 @@ func ProcessMainHandler(responseWriter http.ResponseWriter, request *http.Reques
 		ResponseMessage: "Success",
 		ResponseCode:    "SUCCESS",
 	}
+
 	json.NewEncoder(responseWriter).Encode(response)
 }
