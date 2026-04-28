@@ -1,18 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"vortex-engine/config"
+	"vortex-engine/logger"
 )
 
 func main() {
-	fmt.Println("== Starting Vortex Engine ==")
+	// Setup logging
+	logger.SetupLogging()
+	logger.Info.Println("== Vortex Engine Start ==")
 
 	// Setup http routes
 	config.SetupRoutes()
-	// Setup logging
-	config.SetupLogging()
 
 	// Start the server on port 8080
 	http.ListenAndServe(":8080", nil)
