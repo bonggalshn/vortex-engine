@@ -18,19 +18,25 @@ type Quote struct {
 }
 
 func GetZenQuote() Quote {
+
+	defaultQuote := Quote{
+		Text:   "Life is a process. We are a process. The universe is a process.",
+		Author: "Anne Wilson Schaef",
+	}
+
 	client := &http.Client{
 		Timeout: 5 * time.Second,
 	}
 	response, err := client.Get("https://zenquotes.io/api/random")
 	if err != nil {
 		logger.Error.Printf("Error fetching quote: %v", err)
-		return Quote{}
+		return defaultQuote
 	}
 	defer response.Body.Close()
 
 	if response.StatusCode != http.StatusOK {
 		logger.Error.Printf("Non-OK HTTP status: %s", response.Status)
-		return Quote{}
+		return defaultQuote
 	}
 
 	logger.Info.Println("Response Status: " + response.Status)
@@ -38,7 +44,7 @@ func GetZenQuote() Quote {
 	var data []ZenQuoteResponse
 	if err := json.NewDecoder(response.Body).Decode(&data); err != nil {
 		logger.Error.Printf("Error decoding quote response: %v", err)
-		return Quote{}
+		return defaultQuote
 	}
 
 	quote := data[0]
