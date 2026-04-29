@@ -17,7 +17,7 @@ func ProcessMainHandler(responseWriter http.ResponseWriter, request *http.Reques
 	quote := quote.GetZenQuote()
 
 	response := model.ResponseInfo{
-		ResponseMessage: quote.Text + " - " + quote.Author,
+		ResponseMessage: quote.Text,
 		ResponseCode:    "SUCCESS",
 	}
 
