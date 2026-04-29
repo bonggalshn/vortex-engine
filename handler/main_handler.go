@@ -3,6 +3,7 @@ package handler
 import (
 	"encoding/json"
 	"net/http"
+	"vortex-engine/external/quote"
 	"vortex-engine/logger"
 	"vortex-engine/model"
 )
@@ -12,8 +13,11 @@ func ProcessMainHandler(responseWriter http.ResponseWriter, request *http.Reques
 	logger.Info.Println("Main handler invoked")
 
 	responseWriter.Header().Set("Content-Type", "application/json")
+
+	quote := quote.GetZenQuote()
+
 	response := model.ResponseInfo{
-		ResponseMessage: "Success",
+		ResponseMessage: quote.Text + " - " + quote.Author,
 		ResponseCode:    "SUCCESS",
 	}
 
