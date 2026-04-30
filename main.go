@@ -19,9 +19,9 @@ func main() {
 	repository.EstablishMainDBConnection()
 
 	// Setup http routes
-	config.SetupRoutes()
+	handler := config.SetupRoutes()
 
 	// Start the server on port 8080
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", handler)
 
 }
