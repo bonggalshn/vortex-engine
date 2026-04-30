@@ -2,7 +2,9 @@ package config
 
 import (
 	"os"
+	"strings"
 	"vortex-engine/logger"
+	"vortex-engine/util"
 
 	"github.com/joho/godotenv"
 )
@@ -25,10 +27,15 @@ func LoadEnvConfig() {
 
 }
 
-func GetAllowedOriginList() []string {
-	return allowedOriginList
-}
-
 func GetAllowedMethodList() []string {
 	return allowedMethodList
+}
+
+func IsAllowOrigin(origin string) bool {
+	if util.ListContains(allowedOriginList, origin) {
+		return true
+	}
+
+	return strings.HasPrefix(origin, "https://vortex") &&
+		strings.HasSuffix(origin, ".vercel.app")
 }
