@@ -14,15 +14,15 @@ func SetupRoutes() http.Handler {
 	mux.HandleFunc("/main", mainHandler) // Main route
 
 	// cors
-	c := cors.New(cors.Options{
-		AllowedOrigins: GetAllowedOriginList(),
-	})
+	crs := allowCors()
 
-	handlerWithCors := c.Handler(mux)
+	handlerWithCors := crs.Handler(mux)
 
 	return handlerWithCors
 }
 
-func allowCors() {
-
+func allowCors() *cors.Cors {
+	return cors.New(cors.Options{
+		AllowedOrigins: GetAllowedOriginList(),
+	})
 }
