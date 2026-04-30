@@ -10,7 +10,8 @@ import (
 
 // Handler for the /main route
 func ProcessMainHandler(responseWriter http.ResponseWriter, request *http.Request) {
-	logger.Info.Println("Main handler invoked")
+	logger.Info.Println("Main handler invoked.")
+	logger.Info.Println("Origin: " + request.Header.Get("Origin"))
 
 	responseWriter.Header().Set("Content-Type", "application/json")
 
