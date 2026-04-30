@@ -12,7 +12,8 @@ func EstablishMainDBConnection() {
 	logger.Info.Println("Establish main database connection.")
 
 	dbHost := os.Getenv("DATABASE_HOST")
-	logger.Info.Printf("Database host: %s", dbHost)
+	isDatabaseHostSet := dbHost != ""
+	logger.Info.Printf("Database host: %t", isDatabaseHostSet)
 
 	connectionString := "postgresql://vortex_user:sGrYCfMBcWnRRXIPKUehDeiORkINFZVU@dpg-d7og4g0sfn5c739chsrg-a.singapore-postgres.render.com/vortex_data?sslmode=require"
 
