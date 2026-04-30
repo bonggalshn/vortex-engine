@@ -24,7 +24,7 @@ func SetupRoutes() http.Handler {
 func allowCors() *cors.Cors {
 	return cors.New(cors.Options{
 		AllowedOrigins: GetAllowedOriginList(),
-		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedMethods: GetAllowedMethodList()
 		AllowedHeaders: []string{"Content-Type", "Authorization", "Origin"},
 	})
 }
