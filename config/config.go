@@ -7,7 +7,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var allowedOriginList = []string{"https://vortex-ui-eight.vercel.app/"}
+var allowedOriginList = []string{"https://vortex-ui-eight.vercel.app"}
 var allowedMethodList = []string{"GET", "POST", "PUT", "DELETE"}
 
 func LoadEnvConfig() {
@@ -29,6 +29,6 @@ func GetAllowedOriginList() []string {
 	return allowedOriginList
 }
 
-func GetAllowedMethod() []string {
+func GetAllowedMethodList() []string {
 	return allowedMethodList
 }
