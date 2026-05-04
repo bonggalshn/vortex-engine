@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"vortex-engine/config"
+	"vortex-engine/internal/rds"
 	"vortex-engine/internal/repository"
 	"vortex-engine/logger"
 )
@@ -17,6 +18,8 @@ func main() {
 
 	// Establish main database connection
 	repository.EstablishMainDBConnection()
+
+	rds.EstablishRedisConnection()
 
 	// Setup http routes
 	handler := config.SetupRoutes()
